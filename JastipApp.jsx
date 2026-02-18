@@ -27,7 +27,8 @@ import {
   ChevronRight,
   FileText,
   Tag,
-  Info
+  Info,
+  Circle
 } from 'lucide-react';
 
 // ==========================================
@@ -324,7 +325,7 @@ export default function App() {
         <div className="bg-emerald-600 text-white py-20 px-4 text-center relative overflow-hidden">
           <div className="absolute top-10 left-10 opacity-10 rotate-12"><Plane size={150}/></div>
           <div className="absolute bottom-10 right-10 opacity-10 -rotate-12"><ShoppingBag size={150}/></div>
-          <h1 className="text-5xl font-black mb-4 tracking-tighter uppercase italic drop-shadow-xl">Jastip MOMsVARESH</h1>
+          <h1 className="text-5xl font-black mb-4 tracking-tighter uppercase italic drop-shadow-xl text-white">Jastip MOMsVARESH</h1>
           <p className="opacity-90 mb-10 text-xl font-medium tracking-tight uppercase">Layanan Jasa Titip Amanah & Terpercaya</p>
           <div className="inline-flex flex-col items-center bg-white/10 backdrop-blur-2xl px-10 py-6 rounded-[2.5rem] border border-white/20 shadow-2xl">
              <span className="text-[10px] uppercase font-black tracking-[0.4em] opacity-60 mb-2">Agenda Jastip Aktif</span>
@@ -387,10 +388,10 @@ export default function App() {
           <div className="font-black text-white tracking-tighter text-3xl mb-3 uppercase italic">MOMsVARESH</div>
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.4em] mb-10 opacity-70">Jasa Titip Amanah Se-Indonesia • Est 2026</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-white/40 text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-10">
-            <div className="flex flex-col gap-2"><span>Lokasi</span><span className="text-white opacity-80">Indonesia</span></div>
-            <div className="flex flex-col gap-2"><span>Jam Operasional</span><span className="text-white opacity-80">24/7 Service</span></div>
-            <div className="flex flex-col gap-2"><span>Total Item</span><span className="text-white opacity-80">{products.length} Katalog</span></div>
-            <div className="flex flex-col gap-2"><span>Status</span><span className="text-white opacity-80">Online Cloud</span></div>
+            <div className="flex flex-col gap-2"><span>Lokasi</span><span className="text-white opacity-80 uppercase text-white">Indonesia</span></div>
+            <div className="flex flex-col gap-2"><span>Jam Operasional</span><span className="text-white opacity-80 uppercase text-white">24/7 Service</span></div>
+            <div className="flex flex-col gap-2"><span>Total Katalog</span><span className="text-white opacity-80 uppercase text-white">{products.length} Item</span></div>
+            <div className="flex flex-col gap-2"><span>Status</span><span className="text-white opacity-80 uppercase text-white">Cloud Active</span></div>
           </div>
         </footer>
       </div>
@@ -423,6 +424,7 @@ export default function App() {
         </nav>
         
         <div className="p-8 border-t border-slate-800/50 space-y-4">
+          {/* RELOKASI STATUS KONEKSI DI SINI */}
           <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-500 ${isConnected ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
             <div className={`w-2.5 h-2.5 rounded-full shadow-lg ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></div>
             <span className="text-[10px] font-black uppercase tracking-widest italic">{isConnected ? 'Cloud Connected' : 'Disconnected'}</span>
@@ -436,7 +438,7 @@ export default function App() {
 
       <main className="flex-1 md:ml-72 p-8 md:p-14 overflow-y-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-14 gap-8">
-          <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter italic italic">{activeModule}</h2>
+          <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter italic">{activeModule}</h2>
           <div className="bg-white p-3 rounded-[1.5rem] shadow-2xl border border-slate-200 flex items-center gap-4 group">
              <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-4">Filter Agenda:</div>
              <select className="border-none bg-slate-50 rounded-2xl px-6 py-4 text-sm font-black text-slate-800 outline-none cursor-pointer min-w-[280px] appearance-none" value={selectedTripId || ''} onChange={(e) => setSelectedTripId(Number(e.target.value))}>
@@ -445,6 +447,7 @@ export default function App() {
           </div>
         </div>
 
+        {/* --- MODULE: SUMMARY --- */}
         {activeModule === 'summary' && (
           <div className="space-y-10 animate-in fade-in duration-700">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -460,7 +463,7 @@ export default function App() {
               </Card>
             </div>
             <Card className="p-12 rounded-[2.5rem] border-none shadow-2xl">
-              <h3 className="font-black text-2xl text-slate-800 mb-10 flex items-center gap-5 uppercase tracking-tighter italic border-b-2 border-slate-50 pb-6"><Calculator className="text-emerald-600" size={32}/> Laporan Keuangan</h3>
+              <h3 className="font-black text-2xl text-slate-800 mb-10 flex items-center gap-5 uppercase tracking-tighter italic border-b-2 border-slate-50 pb-6"><Calculator className="text-emerald-600" size={32}/> Laporan Performa Keuangan</h3>
               <SimpleBarChart label="Total Pendapatan" value={stats.revenue} total={stats.revenue} colorClass="bg-emerald-500 shadow-xl shadow-emerald-100" />
               <div className="my-10"></div>
               <SimpleBarChart label="Total Pengeluaran" value={stats.expenses} total={stats.revenue} colorClass="bg-red-500 shadow-xl shadow-red-100" />
@@ -468,6 +471,7 @@ export default function App() {
           </div>
         )}
 
+        {/* --- MODULE: TRIPS --- */}
         {activeModule === 'trips' && (
           <div className="space-y-8 animate-in slide-in-from-bottom-8">
             <div className="flex justify-end">
@@ -481,8 +485,8 @@ export default function App() {
                     <div>
                       <div className="font-black text-slate-900 text-2xl uppercase italic tracking-tighter">{t.title}</div>
                       <div className="text-xs text-slate-400 font-black flex gap-8 mt-2 uppercase tracking-[0.1em] opacity-80">
-                        <span className="flex items-center gap-2"><MapPin size={16}/> {t.city}</span>
-                        <span className="flex items-center gap-2"><Calendar size={16}/> {formatDate(t.date_start)}</span>
+                        <span className="flex items-center gap-2 text-slate-600"><MapPin size={16}/> {t.city}</span>
+                        <span className="flex items-center gap-2 text-slate-600"><Calendar size={16}/> BRKT: {formatDate(t.date_start)}</span>
                       </div>
                     </div>
                   </div>
@@ -496,20 +500,21 @@ export default function App() {
           </div>
         )}
 
+        {/* --- MODULE: PRODUCTS (PERBAIKAN TAMPILAN BOX & TOMBOL CRUD) --- */}
         {activeModule === 'products' && (
           <div className="space-y-8 animate-in slide-in-from-bottom-8">
             <div className="flex justify-between items-center bg-white p-10 rounded-[2.5rem] shadow-2xl border border-slate-100">
               <div>
                 <h3 className="font-black text-slate-900 uppercase tracking-tighter text-2xl italic">Kontrol Katalog</h3>
-                <div className="text-[10px] text-slate-400 font-black mt-1 uppercase tracking-widest italic italic">Agenda: <b className="text-emerald-600">{activeTrip?.title || '-'}</b></div>
+                <div className="text-[10px] text-slate-400 font-black mt-1 uppercase tracking-widest">Trip Aktif: <b className="text-emerald-600 ml-1">{activeTrip?.title || '-'}</b></div>
               </div>
-              <button onClick={() => openProdModal('add')} className="bg-emerald-600 text-white px-10 py-5 rounded-[1.5rem] font-black text-xs uppercase tracking-widest flex items-center gap-4 hover:bg-emerald-700 shadow-2xl active:scale-95"><Plus size={20} /> Tambah Item</button>
+              <button onClick={() => openProdModal('add')} className="bg-emerald-600 text-white px-10 py-5 rounded-[1.5rem] font-black text-xs uppercase tracking-widest flex items-center gap-4 hover:bg-emerald-700 shadow-2xl active:scale-95"><Plus size={20} /> Tambah Produk</button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10">
               {filteredProducts.map(p => {
                 const total = Number(p.price_buy) + (Number(p.fee) || 0);
                 return (
-                <Card key={p.id} className="flex p-8 gap-8 items-center group hover:border-emerald-400 transition-all duration-500 rounded-[2.5rem] border-2 shadow-xl min-h-[220px]">
+                <Card key={p.id} className="flex p-8 gap-8 items-center group hover:border-emerald-400 transition-all duration-500 rounded-[2.5rem] border-2 shadow-xl min-h-[200px]">
                   <div className="w-28 h-28 bg-slate-100 rounded-[2rem] overflow-hidden flex-shrink-0 shadow-2xl relative">
                     <img src={p.image} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" onError={(e) => e.target.src='https://placehold.co/400x400?text=Produk'} />
                   </div>
@@ -517,13 +522,14 @@ export default function App() {
                     <div className="font-black text-slate-900 truncate text-xl uppercase tracking-tighter mb-4">{p.name}</div>
                     <div className="grid grid-cols-2 gap-y-2 text-[11px] font-black border-t-2 pt-4 border-slate-50 uppercase tracking-tight italic">
                       <div className="text-slate-400">Beli:</div>
-                      <div className="text-slate-700 text-right">{formatRupiah(p.price_buy)}</div>
+                      <div className="text-slate-700 text-right font-black">{formatRupiah(p.price_buy)}</div>
                       <div className="text-slate-400">Fee:</div>
-                      <div className="text-orange-600 text-right">+{formatRupiah(p.fee)}</div>
-                      <div className="text-slate-900 font-black pt-2 border-t mt-2">TOTAL:</div>
+                      <div className="text-orange-600 text-right font-black">+{formatRupiah(p.fee)}</div>
+                      <div className="text-slate-900 font-black pt-2 border-t mt-2">TOTAL JUAL:</div>
                       <div className="font-black text-emerald-700 text-lg text-right pt-1 border-t mt-2 tracking-tighter italic">{formatRupiah(total)}</div>
                     </div>
                   </div>
+                  {/* TOMBOL CRUD TAMPIL PERMANEN & TIDAK TERPOTONG */}
                   <div className="flex flex-col gap-3 flex-shrink-0">
                     <button onClick={() => openProdModal('edit', p)} className="p-3 text-slate-400 hover:text-blue-600 transition hover:bg-blue-50 rounded-2xl border-2 border-slate-50 shadow-sm"><Edit size={22}/></button>
                     <button onClick={() => confirmDelete('products', p.id, p.name)} className="p-3 text-slate-400 hover:text-red-600 transition hover:bg-red-50 rounded-2xl border-2 border-slate-50 shadow-sm"><Trash2 size={22}/></button>
@@ -534,6 +540,7 @@ export default function App() {
           </div>
         )}
 
+        {/* --- MODULE: FINANCE (FULL CRUD) --- */}
         {activeModule === 'finance' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-in slide-in-from-bottom-8">
             <div className="space-y-10">
@@ -549,7 +556,7 @@ export default function App() {
                       <div className="font-black text-emerald-600 text-3xl tracking-tighter italic">{formatRupiah(o.total)}</div>
                       <div className="flex gap-2">
                         <button onClick={() => openFinModal('order', 'edit', o)} className="text-slate-400 hover:text-blue-500 p-2 border border-slate-100 rounded-lg"><Edit size={22}/></button>
-                        <button onClick={() => confirmDelete('orders', o.id, `Pesanan ${o.customer_name}`)} className="text-slate-300 hover:text-red-500 p-2 border border-slate-100 rounded-lg"><Trash2 size={22}/></button>
+                        <button onClick={() => confirmDelete('orders', o.id, `Pesanan ${o.customer_name}`)} className="text-slate-400 hover:text-red-500 p-2 border border-slate-100 rounded-lg"><Trash2 size={22}/></button>
                       </div>
                     </div>
                   </Card>
@@ -570,7 +577,7 @@ export default function App() {
                       <div className="font-black text-red-600 text-3xl tracking-tighter italic">({formatRupiah(e.amount)})</div>
                       <div className="flex gap-2">
                         <button onClick={() => openFinModal('expense', 'edit', e)} className="text-slate-400 hover:text-blue-500 p-2 border border-slate-100 rounded-lg"><Edit size={22}/></button>
-                        <button onClick={() => confirmDelete('expenses', e.id, e.description)} className="text-slate-300 hover:text-red-500 p-2 border border-slate-100 rounded-lg"><Trash2 size={22}/></button>
+                        <button onClick={() => confirmDelete('expenses', e.id, e.description)} className="text-slate-400 hover:text-red-500 p-2 border border-slate-100 rounded-lg"><Trash2 size={22}/></button>
                       </div>
                     </div>
                   </Card>
@@ -588,10 +595,10 @@ export default function App() {
           <Card className="w-full max-w-sm p-12 shadow-2xl border-none rounded-[3rem]">
             <div className="text-center">
               <div className="bg-red-100 w-24 h-24 rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-red-500/20"><Trash2 className="text-red-600" size={48} /></div>
-              <h3 className="font-black text-3xl text-slate-900 mb-4 uppercase tracking-tighter italic italic italic">Hapus Data?</h3>
+              <h3 className="font-black text-3xl text-slate-900 mb-4 uppercase tracking-tighter italic">Hapus Data?</h3>
               <p className="text-slate-500 text-sm font-bold leading-relaxed opacity-80 uppercase tracking-widest text-center">Yakin ingin membuang <br/><b className="text-slate-900 font-black text-base tracking-normal">"{deleteConfirm.label}"</b>?</p>
               <div className="grid grid-cols-2 gap-6 mt-12">
-                <button onClick={() => setDeleteConfirm({ ...deleteConfirm, open: false })} className="bg-slate-100 text-slate-500 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] active:scale-95">Batal</button>
+                <button onClick={() => setDeleteConfirm({ ...deleteConfirm, open: false })} className="bg-slate-100 text-slate-500 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] active:scale-95 transition">Batal</button>
                 <button onClick={processDelete} disabled={isSaving} className="bg-red-600 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-2xl active:scale-95 transition flex justify-center items-center gap-2">{isSaving ? <Loader2 className="animate-spin" size={14}/> : 'Hapus'}</button>
               </div>
             </div>
@@ -614,14 +621,14 @@ export default function App() {
                   </div>
                   <div className="space-y-1">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Total Bayar (Rp)</label>
-                    <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 transition text-emerald-700 text-2xl shadow-inner tracking-tighter" type="number" placeholder="0" required value={finForm.total} onChange={e => setFinForm({...finForm, total: e.target.value})} />
+                    <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 transition text-emerald-700 text-2xl shadow-inner tracking-tighter font-black" type="number" placeholder="0" required value={finForm.total} onChange={e => setFinForm({...finForm, total: e.target.value})} />
                   </div>
                 </>
               ) : (
                 <>
                   <div className="space-y-1">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Kategori Biaya</label>
-                    <div className="flex items-center gap-3 bg-slate-50 p-1.5 rounded-2xl border border-slate-100 italic italic">
+                    <div className="flex items-center gap-3 bg-slate-50 p-1.5 rounded-2xl border border-slate-100 italic">
                       <Tag className="text-slate-400 ml-3" size={18}/>
                       <select className="flex-1 bg-transparent border-none p-2 font-black outline-none uppercase text-xs text-slate-700" value={finForm.category} onChange={e => setFinForm({...finForm, category: e.target.value})}>
                         <option value="Transport">Transport (Bensin/Grab/Tol)</option>
@@ -633,20 +640,20 @@ export default function App() {
                   </div>
                   <div className="space-y-1">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Keterangan Detail</label>
-                    <div className="flex items-center gap-3 bg-slate-50 p-1.5 rounded-2xl border border-slate-100 italic italic">
+                    <div className="flex items-center gap-3 bg-slate-50 p-1.5 rounded-2xl border border-slate-100 italic">
                       <FileText className="text-slate-400 ml-3" size={18}/>
                       <input className="flex-1 bg-transparent border-none p-2 font-black outline-none uppercase text-sm text-slate-700" placeholder="DESKRIPSI..." required value={finForm.description} onChange={e => setFinForm({...finForm, description: e.target.value})} />
                     </div>
                   </div>
                   <div className="space-y-1">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Nominal (Rp)</label>
-                    <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-red-100 text-red-700 text-2xl shadow-inner tracking-tighter italic" type="number" placeholder="0" required value={finForm.amount} onChange={e => setFinForm({...finForm, amount: e.target.value})} />
+                    <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-red-100 text-red-700 text-2xl shadow-inner tracking-tighter font-black" type="number" placeholder="0" required value={finForm.amount} onChange={e => setFinForm({...finForm, amount: e.target.value})} />
                   </div>
                 </>
               )}
               <div className="flex gap-4 pt-4">
-                <button type="button" onClick={() => setFinanceModal({ ...financeModal, open: false })} className="flex-1 bg-slate-100 text-slate-500 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 italic italic italic">Batal</button>
-                <button disabled={isSaving} className={`flex-1 text-white py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-2xl flex justify-center items-center gap-3 active:scale-95 transition ${financeModal.type === 'order' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-red-600 hover:bg-red-700'}`}>
+                <button type="button" onClick={() => setFinanceModal({ ...financeModal, open: false })} className="flex-1 bg-slate-100 text-slate-500 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 italic">Batal</button>
+                <button disabled={isSaving} className={`flex-1 text-white py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-2xl flex justify-center items-center gap-3 active:scale-95 transition ${financeModal.type === 'order' ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/30' : 'bg-red-600 hover:bg-red-700 shadow-red-500/30'}`}>
                   {isSaving ? <Loader2 className="animate-spin" size={20}/> : <Save size={20}/>} Simpan Cloud
                 </button>
               </div>
@@ -656,43 +663,43 @@ export default function App() {
       )}
 
       {productModal.open && (
-        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300">
-          <Card className="w-full max-w-lg p-10 md:p-12 shadow-2xl border-none rounded-[3rem] my-auto max-h-[90vh] overflow-y-auto italic">
+        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300 overflow-y-auto">
+          <Card className="w-full max-w-lg p-10 md:p-12 shadow-2xl border-none rounded-[3rem] my-auto max-h-[90vh] overflow-y-auto">
             <h3 className="font-black text-3xl text-slate-900 uppercase tracking-tighter italic mb-8 border-b-2 border-slate-50 pb-6 flex items-center gap-5">
               <ShoppingBag className="text-emerald-600" size={40}/> {productModal.type === 'add' ? 'Katalog Baru' : 'Update Item'}
             </h3>
             <form onSubmit={handleSaveProduct} className="space-y-6">
               <div className="space-y-1">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70 italic italic">Nama Barang</label>
-                <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase italic" placeholder="SPIKOE RAISIN..." required value={prodForm.name} onChange={e => setProdForm({...prodForm, name: e.target.value})} />
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70 italic">Nama Barang</label>
+                <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase" placeholder="SPIKOE RAISIN..." required value={prodForm.name} onChange={e => setProdForm({...prodForm, name: e.target.value})} />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70 italic italic">Deskripsi Singkat</label>
-                <textarea className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase text-sm italic" placeholder="DETAIL PRODUK..." rows="2" value={prodForm.description} onChange={e => setProdForm({...prodForm, description: e.target.value})} />
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70 italic">Deskripsi Singkat</label>
+                <textarea className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase text-sm" placeholder="DETAIL PRODUK..." rows="2" value={prodForm.description} onChange={e => setProdForm({...prodForm, description: e.target.value})} />
               </div>
-              <div className="grid grid-cols-2 gap-5 italic italic">
+              <div className="grid grid-cols-2 gap-5">
                 <div className="space-y-1">
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70 italic">Harga Beli</label>
-                  <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner italic" type="number" placeholder="0" required value={prodForm.price_buy} onChange={e => setProdForm({...prodForm, price_buy: e.target.value})} />
+                  <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner font-black" type="number" placeholder="0" required value={prodForm.price_buy} onChange={e => setProdForm({...prodForm, price_buy: e.target.value})} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] font-black text-orange-600 uppercase tracking-widest ml-1 opacity-70 italic">Laba Jastip</label>
-                  <input className="w-full border-orange-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-orange-100 bg-orange-50 text-orange-900 shadow-inner italic" type="number" placeholder="0" required value={prodForm.fee} onChange={e => setProdForm({...prodForm, fee: e.target.value})} />
+                  <input className="w-full border-orange-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-orange-100 bg-orange-50 text-orange-900 shadow-inner font-black" type="number" placeholder="0" required value={prodForm.fee} onChange={e => setProdForm({...prodForm, fee: e.target.value})} />
                 </div>
               </div>
               <div className="bg-emerald-50 p-5 rounded-[2rem] flex items-center gap-6 text-emerald-800 border-2 border-emerald-100 shadow-inner font-black italic">
                 <Calculator size={36} className="opacity-40" />
-                <div className="flex-1 italic italic">
+                <div className="flex-1">
                   <div className="text-[9px] uppercase tracking-widest opacity-60 mb-1">Harga Jual Otomatis:</div>
-                  <div className="text-3xl font-black tracking-tighter leading-none">{formatRupiah((parseInt(prodForm.price_buy)||0) + (parseInt(prodForm.fee)||0))}</div>
+                  <div className="text-3xl font-black tracking-tighter leading-none italic">{formatRupiah((parseInt(prodForm.price_buy)||0) + (parseInt(prodForm.fee)||0))}</div>
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Link Gambar Supabase</label>
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70 italic">Link Gambar Supabase</label>
                 <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black text-xs text-slate-500 shadow-inner italic" placeholder="URL..." value={prodForm.image_url} onChange={e => setProdForm({...prodForm, image_url: e.target.value})} />
               </div>
-              <div className="pt-4 italic italic">
-                <button disabled={isSaving} className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl flex justify-center items-center gap-3 active:scale-95 transition italic">
+              <div className="pt-4 italic">
+                <button disabled={isSaving} className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl flex justify-center items-center gap-3 active:scale-95 transition">
                   {isSaving ? <Loader2 className="animate-spin" size={20}/> : <CheckCircle2 size={20}/>} Simpan Data Cloud
                 </button>
               </div>
@@ -702,33 +709,33 @@ export default function App() {
       )}
 
       {tripModal.open && (
-        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300">
-          <Card className="w-full max-w-lg p-10 md:p-12 shadow-2xl border-none rounded-[3rem] my-auto max-h-[90vh] overflow-y-auto italic">
-            <h3 className="font-black text-3xl text-slate-900 uppercase tracking-tighter italic mb-8 flex items-center gap-5 italic italic">
+        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300 overflow-y-auto">
+          <Card className="w-full max-w-lg p-10 md:p-12 shadow-2xl border-none rounded-[3rem] my-auto max-h-[90vh] overflow-y-auto">
+            <h3 className="font-black text-3xl text-slate-900 uppercase tracking-tighter italic mb-8 flex items-center gap-5 italic">
               <Plane className="text-emerald-600" size={40}/> Agenda Trip
             </h3>
-            <form onSubmit={handleSaveTrip} className="space-y-6 italic italic italic">
+            <form onSubmit={handleSaveTrip} className="space-y-6">
               <div className="space-y-1">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Judul Agenda</label>
-                <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase text-sm italic italic" placeholder="SPIKOE BATCH 2..." required value={tripForm.title} onChange={e => setTripForm({...tripForm, title: e.target.value})} />
+                <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase text-sm italic" placeholder="SPIKOE BATCH 2..." required value={tripForm.title} onChange={e => setTripForm({...tripForm, title: e.target.value})} />
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 opacity-70">Kota Tujuan</label>
-                <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase text-sm italic italic" placeholder="SURABAYA..." required value={tripForm.city} onChange={e => setTripForm({...tripForm, city: e.target.value})} />
+                <input className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none focus:ring-4 focus:ring-emerald-100 shadow-inner uppercase text-sm italic" placeholder="SURABAYA..." required value={tripForm.city} onChange={e => setTripForm({...tripForm, city: e.target.value})} />
               </div>
-              <div className="grid grid-cols-2 gap-6 italic italic">
+              <div className="grid grid-cols-2 gap-6 italic">
                 <div>
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block italic">Tgl Berangkat</label>
-                  <input type="date" className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none shadow-inner italic" value={tripForm.date_start} onChange={e => setTripForm({...tripForm, date_start: e.target.value})} />
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Tgl Berangkat</label>
+                  <input type="date" className="w-full border-slate-200 border-2 p-3.5 rounded-2xl font-black outline-none shadow-inner" value={tripForm.date_start} onChange={e => setTripForm({...tripForm, date_start: e.target.value})} />
                 </div>
                 <div>
-                  <label className="text-[10px] font-black text-orange-600 uppercase tracking-widest ml-1 mb-2 block italic opacity-80 italic">Close PO</label>
-                  <input type="date" className="w-full border-orange-200 border-2 p-3.5 rounded-2xl font-black bg-orange-50 text-orange-900 shadow-inner focus:ring-4 focus:ring-orange-100 outline-none italic" value={tripForm.deadline} onChange={e => setTripForm({...tripForm, deadline: e.target.value})} />
+                  <label className="text-[10px] font-black text-orange-600 uppercase tracking-widest ml-1 mb-2 block italic opacity-80">Close PO</label>
+                  <input type="date" className="w-full border-orange-200 border-2 p-3.5 rounded-2xl font-black bg-orange-50 text-orange-900 shadow-inner focus:ring-4 focus:ring-orange-100 outline-none" value={tripForm.deadline} onChange={e => setTripForm({...tripForm, deadline: e.target.value})} />
                 </div>
               </div>
-              <div className="pt-8 flex gap-6 italic italic italic">
-                <button type="button" onClick={() => setTripModal({ ...tripModal, open: false })} className="flex-1 bg-slate-100 text-slate-500 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 italic">Batal</button>
-                <button disabled={isSaving} className="flex-1 bg-emerald-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-2xl flex justify-center items-center gap-3 active:scale-95 transition shadow-xl italic">
+              <div className="pt-8 flex gap-6 italic">
+                <button type="button" onClick={() => setTripModal({ ...tripModal, open: false })} className="flex-1 bg-slate-100 text-slate-500 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95">Batal</button>
+                <button disabled={isSaving} className="flex-1 bg-emerald-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-2xl flex justify-center items-center gap-3 active:scale-95 transition shadow-xl">
                   {isSaving ? <Loader2 className="animate-spin" size={20}/> : <Save size={20}/>} Simpan Agenda
                 </button>
               </div>
